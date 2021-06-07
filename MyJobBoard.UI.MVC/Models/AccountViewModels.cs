@@ -64,6 +64,13 @@ namespace MyJobBoard.UI.MVC.Models
 
     public class RegisterViewModel
     {
+
+        [Required(ErrorMessage ="The field is required")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage ="The field is required")]
+        public string LastName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

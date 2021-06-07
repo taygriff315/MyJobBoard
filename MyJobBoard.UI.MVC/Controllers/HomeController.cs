@@ -11,10 +11,22 @@ namespace MyJobBoard.UI.MVC.Controllers
         }
 
         [HttpGet]
+        public ActionResult UserProfile()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Application()
+        {
+            return View();
+        }
+
+        [HttpGet]
         [Authorize]
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
+            
 
             return View();
         }
