@@ -17,15 +17,9 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="~/Content/vendor/aos/aos.css" rel="stylesheet">
-    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/Content/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="~/Content/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="~/Content/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="~/Content/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-    <!-- Template Main CSS File -->
-    <link href="~/Content/css/style.css" rel="stylesheet">
+
+    @Styles.Render("~/Content/archive")
 
     <!-- =======================================================
     * Template Name: iPortfolio - v3.3.0
@@ -102,18 +96,9 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="~/Content/assets/vendor/aos/aos.js"></script>
-    <script src="~/Content/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/Content/assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="~/Content/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="~/Content/assets/vendor/php-email-form/validate.js"></script>
-    <script src="~/Content/assets/vendor/purecounter/purecounter.js"></script>
-    <script src="~/Content/assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="~/Content/assets/vendor/typed.js/typed.min.js"></script>
-    <script src="~/Content/assets/vendor/waypoints/noframework.waypoints.js"></script>
+   
 
-    <!-- Template Main JS File -->
-    <script src="~/Content/assets/js/main.js"></script>
+    @Scripts.Render("~/Content/vendor")
 
     @RenderSection("scripts", required: false)
 </body>

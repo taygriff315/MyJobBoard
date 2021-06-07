@@ -25,6 +25,29 @@ namespace MyJobBoard.UI.MVC
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/Content/vendor").Include(
+               "~/Content/assets/vendor/aos/aos.js", 
+               "~/Content/assets/vendor/bootstrap/js/bootstrap.bundle.min.js", 
+               "~/Content/assets/vendor/glightbox/js/glightbox.min.js", 
+               "~/Content/assets/vendor/isotope-layout/isotope.pkgd.min.js", 
+               "~/Content/assets/vendor/php-email-form/validate.js",
+               "~/Content/assets/vendor/purecounter/purecounter.js",
+               "~/Content/assets/vendor/swiper/swiper-bundle.min.js",
+               "~/Content/assets/vendor/typed.js/typed.min.js", 
+               "~/Content/assets/vendor/waypoints/noframework.waypoints.js",
+               "~/Content/assets/js/main.js"
+                ));
+
+            bundles.Add(new StyleBundle("~/Content/archive").Include(
+                   "~/Content/vendor/aos/aos.css", 
+                  "~/Content/vendor/bootstrap/css/bootstrap.min.css",
+                  "~/Content/vendor/bootstrap-icons/bootstrap-icons.css",
+                 "~/Content/vendor/boxicons/css/boxicons.min.css",
+                 "~/Content/vendor/glightbox/css/glightbox.min.css", 
+                  "~/Content/vendor/swiper/swiper-bundle.min.css",
+                  "~/Content/css/style.css"
+                   ));
         }
     }
 }
