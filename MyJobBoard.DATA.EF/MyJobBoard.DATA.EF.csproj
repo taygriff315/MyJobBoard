@@ -68,7 +68,6 @@
     <Compile Include="AspNetUserLogin.cs">
       <DependentUpon>JobBoardDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
     <Compile Include="JobBoardDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -84,6 +83,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>JobBoardDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="JobBoardMetadata\JobBoardMetadata.cs" />
     <Compile Include="Location.cs">
       <DependentUpon>JobBoardDB.tt</DependentUpon>
     </Compile>
