@@ -121,6 +121,7 @@
           <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ResumeFileName" Type="varchar" MaxLength="75" />
+          <Property Name="ProfilePicture" Type="varchar" MaxLength="75" />
         </EntityType>
         <Association Name="FK_Applications_ApplicationStatus">
           <End Role="ApplicationStatus" Type="Self.ApplicationStatus" Multiplicity="1" />
@@ -318,7 +319,7 @@
           <Property Name="ApplicationDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ManagerNotes" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="ApplicationStatus" Type="Int32" Nullable="false" />
-          <Property Name="ResumeFilename" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ResumeFileName" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="ApplicationStatu" Relationship="Self.FK_Applications_ApplicationStatus" FromRole="Applications" ToRole="ApplicationStatus" />
           <NavigationProperty Name="OpenPosition" Relationship="Self.FK_Applications_OpenPositions" FromRole="Applications" ToRole="OpenPositions" />
           <NavigationProperty Name="UserDetail" Relationship="Self.FK_Applications_UserDetails" FromRole="Applications" ToRole="UserDetails" />
@@ -400,7 +401,7 @@
           <Property Name="OpenPositionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PositionId" Type="Int32" Nullable="false" />
           <Property Name="LocationId" Type="Int32" Nullable="false" />
-          <Property Name="pay" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Pay" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="Applications" Relationship="Self.FK_Applications_OpenPositions" FromRole="OpenPositions" ToRole="Applications" />
           <NavigationProperty Name="Location" Relationship="Self.FK_OpenPositions_Locations" FromRole="OpenPositions" ToRole="Locations" />
           <NavigationProperty Name="Position" Relationship="Self.FK_OpenPositions_Positions" FromRole="OpenPositions" ToRole="Positions" />
@@ -434,6 +435,7 @@
           <Property Name="ResumeFileName" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Applications" Relationship="Self.FK_Applications_UserDetails" FromRole="UserDetails" ToRole="Applications" />
           <NavigationProperty Name="Locations" Relationship="Self.FK_Locations_UserDetails" FromRole="UserDetails" ToRole="Locations" />
+          <Property Name="ProfilePicture" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Applications_ApplicationStatus">
           <End Role="ApplicationStatus" Type="Self.ApplicationStatu" Multiplicity="1" />
@@ -603,7 +605,7 @@
                 <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
                 <ScalarProperty Name="ManagerNotes" ColumnName="ManagerNotes" />
                 <ScalarProperty Name="ApplicationStatus" ColumnName="ApplicationStatus" />
-                <ScalarProperty Name="ResumeFilename" ColumnName="ResumeFilename" />
+                <ScalarProperty Name="ResumeFileName" ColumnName="ResumeFilename" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -678,7 +680,7 @@
                 <ScalarProperty Name="OpenPositionId" ColumnName="OpenPositionId" />
                 <ScalarProperty Name="PositionId" ColumnName="PositionId" />
                 <ScalarProperty Name="LocationId" ColumnName="LocationId" />
-                <ScalarProperty Name="pay" ColumnName="pay" />
+                <ScalarProperty Name="Pay" ColumnName="pay" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -705,6 +707,7 @@
           <EntitySetMapping Name="UserDetails">
             <EntityTypeMapping TypeName="JobBoardModel.UserDetail">
               <MappingFragment StoreEntitySet="UserDetails">
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />

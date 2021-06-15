@@ -1,0 +1,105 @@
+﻿@model MyJobBoard.DATA.EF.Application
+
+@{
+    ViewBag.Title = "Edit";
+}
+<br /><br />
+<br /><br />
+
+<div class="open-container" style="background-color:white;">
+    @if (Request.IsAuthenticated && User.IsInRole("Manager") || Request.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <h2 class="text-center">Manage Application</h2>
+        <h4>@Model.UserDetail.Name</h4>
+        <h5>@Model.OpenPosition.Position.Title</h5>
+    }
+@if (Request.IsAuthenticated && User.IsInRole("Employee"))
+{
+    <h2>Update Resume'</h2>
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ApplicationId)
+
+        @if (Request.IsAuthenticated && User.IsInRole("Manager") || Request.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.OpenPosition.Position.Title, "OpenPositionId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("OpenPositionId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.OpenPositionId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserId, "UserId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ApplicationDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ApplicationDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ApplicationDate, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ManagerNotes, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.ManagerNotes, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ManagerNotes, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            
+            <div class="form-group">
+                @Html.LabelFor(model => model.ApplicationStatus, "ApplicationStatus", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("ApplicationStatus", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ApplicationStatus, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+
+        @if (Request.IsAuthenticated && User.IsInRole("Employee"))
+        {
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ResumeFileName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ResumeFileName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ResumeFileName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        }
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button style="margin:1%; background-color: green; color: white; border-radius:5%;" type="submit" value="Save"><i class="far fa-save"></i> Update</button>
+            </div>
+        </div>
+    </div>
+}
+
+<div style="margin-left: 1%;">
+    @Html.ActionLink("Back to List", "Index")
+</div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

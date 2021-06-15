@@ -6,6 +6,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using MyJobBoard.DATA.EF;
+using StoreFrontLab.UI.Utilities;
+using System.Drawing;
+using System;
 
 namespace MyJobBoard.UI.MVC.Controllers
 {
@@ -145,21 +149,79 @@ namespace MyJobBoard.UI.MVC.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase profilePicture, HttpPostedFileBase resume)
         {
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                UserDetail newUserDeets = new UserDetail();
+
                 if (result.Succeeded)
                 {
-                    //UserDetail newUserDeets = new UserDetail();
+
+                    UserManager.AddToRole(user.Id, "Employee");
+
+                    #region
+                    string file = " ";
+                    string picFile = "noImage.png";
+                    if (resume != null)
+                    {
+                        file = resume.FileName;
+                        string ext = file.Substring(file.LastIndexOf("."));
+                        string[] goodExts = { ".pdf" };
+                        if (goodExts.Contains(ext.ToLower()))
+                        {
+                            file = Guid.NewGuid() + ext;
+                           resume.SaveAs(Server.MapPath("~/Content/resumes/"+ file));
+                        }
+                        else
+                        {
+                            file = null;
+                        }
+                        newUserDeets.ResumeFileName = file;
+                        
+                    }
+                    if (profilePicture != null)
+                    {
+                        picFile = profilePicture.FileName;
+                        string picExt = picFile.Substring(picFile.LastIndexOf("."));
+                        string[] goodPicExts = { ".jpg", ".jpeg", ".png", };
+                        if (goodPicExts.Contains(picExt.ToLower()) && profilePicture.ContentLength <= 4194304)
+                        {
+                            picFile = Guid.NewGuid() + picExt;
+
+                            string picSavePath = Server.MapPath("~/Content/profilePictures/");
+                            Image convertedImage = Image.FromStream(profilePicture.InputStream);
+                            int maxImageSize = 500;
+                            int maxThumbSize = 100;
+                            ImageServices.ResizeImage(picSavePath, picFile, convertedImage, maxImageSize, maxThumbSize);
+                        }
+                        else
+                        {
+                            picFile = "noImage.png";
+                        }
+                        newUserDeets.ProfilePicture = picFile;
+
+                    }
+
+                    #endregion
+
+
+
+                    
+                    newUserDeets.UserId = user.Id;
+                    newUserDeets.FirstName = model.FirstName;
+                    newUserDeets.LastName = model.LastName;
+           
+
+                    JobBoardEntities db = new JobBoardEntities();
+                    db.UserDetails.Add(newUserDeets);
+                    db.SaveChanges();
 
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                    ViewBag.Link = callbackUrl;
-                    return View("DisplayEmail");
+                    
+                    return View("Login");
                 }
                 AddErrors(result);
             }
@@ -394,7 +456,7 @@ namespace MyJobBoard.UI.MVC.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         //

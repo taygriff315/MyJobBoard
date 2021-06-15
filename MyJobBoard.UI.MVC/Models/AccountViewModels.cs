@@ -86,6 +86,13 @@ namespace MyJobBoard.UI.MVC.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name="Resume'")]
+        public string ResumeFileName { get; set; }
+
+        [Display(Name = "Profile Picture")]
+        public string ProfilePicture { get; set; }
+
     }
 
     public class ResetPasswordViewModel

@@ -1,0 +1,72 @@
+﻿@model MyJobBoard.DATA.EF.OpenPosition
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<br /><br />
+<br /><br />
+
+
+<div class="openDetails-container">
+    <h4>@Model.Position.Title - @Model.Location.Address.</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location.StoreNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location.StoreNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location.City)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Position.JobDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Position.JobDescription)
+        </dd>
+    </dl>
+    <p>
+
+        @if (Model.HasApplied == true)
+        {
+            @*@Html.ActionLink("Already applied", "Index", "Applications")*@
+            <a href="@Url.Action("Index","Applications")" style="color: red; display: block;">*You have already applied for this position</a>
+           
+        }
+
+    </p>
+    <p>
+        @if (Model.HasApplied == false)
+        {
+
+            @Html.ActionLink("Apply", "Apply", new { id = Model.OpenPositionId })
+        }
+    </p>
+    <p>
+        @Html.ActionLink("Back to List", "Index")
+
+        @if (Request.IsAuthenticated && User.IsInRole("Manager") || Request.IsAuthenticated && User.IsInRole("Admin"))
+        {
+
+            @Html.ActionLink("Edit", "Edit", new { id = Model.OpenPositionId })
+        }
+    </p>
+</div>
+

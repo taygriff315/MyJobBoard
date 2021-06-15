@@ -1,0 +1,80 @@
+﻿@model IEnumerable<MyJobBoard.DATA.EF.UserDetail>
+
+@{
+    ViewBag.Title = "My Profile";
+}
+<br /><br />
+<br /><br />
+
+      <div id="profile-container" style="background-color: white; font-weight: 900;">
+          <h2 class="text-center" style="color:rgb(26,93,172);"><i class="fas fa-star"></i>  @ViewBag.Title  <i class="fas fa-star"></i></h2>
+        
+
+          <table class="table">
+              <tr>
+                  <th>
+
+                  </th>
+                  <th>
+                      @Html.DisplayNameFor(model => model.FirstName)
+                  </th>
+                  <th>
+                      @Html.DisplayNameFor(model => model.LastName)
+                  </th>
+                  <th>
+                      @Html.DisplayNameFor(model => model.ResumeFileName)
+                  </th>
+                  <th></th>
+              </tr>
+
+              @foreach (var item in Model)
+              {
+                  <tr>
+                      <td>
+                          <img src="~/Content/profilePictures/@item.ProfilePicture" style="height: 10rem; width: 10rem;" />
+                      </td>
+                      <td>
+                          @Html.DisplayFor(modelItem => item.FirstName)
+                      </td>
+                      <td>
+                          @Html.DisplayFor(modelItem => item.LastName)
+                      </td>
+                      <td>
+                          <a href="~/Content/resumes/@item.ResumeFileName">@Html.DisplayFor(modelItem => item.ResumeFileName)</a>
+                      </td>
+                      <td>
+
+
+
+                          @Html.ActionLink(" Edit Profile", "Edit", new { id = item.UserId }, new { @class = "far fa-edit" })
+                          @Html.ActionLink(" Delete Profile", "Delete", new { id = item.UserId }, new { @class = "far fa-trash-alt" })
+
+
+                      </td>
+                  </tr>
+              }
+              <div class="app-folder">
+                  @Html.Partial("_LoginPartial")
+              </div>
+
+
+
+
+
+
+          </table>
+          @if (Request.IsAuthenticated && User.IsInRole("Employee"))
+          {
+
+              <a class="app-folder" href="@Url.Action("Index","Applications")"><i class="far fa-folder"></i> My Applications</a>
+
+          }
+          @if (Request.IsAuthenticated && User.IsInRole("Manager") || (Request.IsAuthenticated && User.IsInRole("Admin")))
+          {
+              
+              <a class="app-folder" href="@Url.Action("Index","Applications")"><i class="far fa-folder"></i> Manage Applications</a>
+
+          }
+          <br /><br />
+
+      </div>

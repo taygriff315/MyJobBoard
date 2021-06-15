@@ -1,0 +1,179 @@
+﻿@model IEnumerable<MyJobBoard.DATA.EF.Application>
+
+@{
+    ViewBag.Title = "Index";
+}
+<br /><br />
+<br /><br />
+
+      <div class="app-container">
+          @if (Request.IsAuthenticated && User.IsInRole("Employee"))
+          {
+              <h2 class="text-center" style="color:rgb(26,93,172);"><i class="fas fa-star"></i>  My Applications  <i class="fas fa-star"></i></h2>
+              <a style="margin-left: 1%; font-weight: 900;" href="@Url.Action("UserProfile","UserDetails")"><i class="fas fa-user-astronaut"></i> Back to Profile</a>
+          }
+          @if (Request.IsAuthenticated && User.IsInRole("Manager") || Request.IsAuthenticated && User.IsInRole("Admin"))
+          {
+              <h2 class="text-center" style="color:rgb(26,93,172);">Applications</h2>
+          }
+          <hr />
+          @*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>*@
+
+   
+
+          <table class="table">
+              <tr>
+                  <th>
+                      @Html.DisplayNameFor(model => model.ApplicationDate)
+                  </th>
+                  @if (Request.IsAuthenticated && User.IsInRole("Manager"))
+                  {
+                      <th>
+                          @Html.DisplayNameFor(model => model.ManagerNotes)
+                      </th>
+                  }
+
+                  @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                  {
+                      <th>
+                          @Html.DisplayNameFor(model => model.ManagerNotes)
+                      </th>
+                  }
+
+                  @if (Request.IsAuthenticated && User.IsInRole("Manager"))
+                  {
+                      <th>
+                          @Html.DisplayNameFor(model => model.ResumeFileName)
+                      </th>
+                  }
+
+                  @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                  {
+                      <th>
+                          @Html.DisplayNameFor(model => model.ResumeFileName)
+                      </th>
+                  }
+
+                  <th>
+                      @Html.DisplayNameFor(model => model.ApplicationStatu.StatusName)
+                  </th>
+                  <th>
+                      @Html.DisplayNameFor(model => model.OpenPosition.Position.Title)
+                  </th>
+                  <th>
+                      @Html.DisplayNameFor(model => model.OpenPosition.Location.City)
+                  </th>
+                  <th>
+                      @Html.DisplayNameFor(model => model.UserDetail.Name)
+                  </th>
+                  <th></th>
+              </tr>
+
+
+
+
+
+              @foreach (var item in Model)
+              {
+
+
+                  <tr>
+
+                      <td>
+                          @Html.DisplayFor(modelItem => item.ApplicationDate)
+                      </td>
+                      @if (Request.IsAuthenticated && User.IsInRole("Manager"))
+                      {
+
+                          <td>
+                              @Html.DisplayFor(modelItem => item.ManagerNotes)
+                          </td>
+                      }
+
+                      @if (Request.IsAuthenticated && User.IsInRole("Manager"))
+                      {
+
+                          <td>
+                              <a href="~/Content/resumes/@item.ResumeFileName">@Html.DisplayFor(modelItem => item.ResumeFileName)</a>
+                              
+                          </td>
+                      }
+                      @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                      {
+
+                          <td>
+                              <a href="~/Content/resumes/@item.ResumeFileName">View</a>
+                          </td>
+                      }
+
+                      <td class="@item.ApplicationStatu.StatusName">
+                          @Html.DisplayFor(modelItem => item.ApplicationStatu.StatusName)
+                      </td>
+                      <td>
+                          @Html.DisplayFor(modelItem => item.OpenPosition.Position.Title)
+                      </td>
+                      <td>
+                          @Html.DisplayFor(modelItem => item.OpenPosition.Location.City)
+                      </td>
+                      <td>
+                          @Html.DisplayFor(modelItem => item.UserDetail.Name)
+                      </td>
+                      <td>
+                          <a href="" class="DetailsLink text-center" style="display:initial; font-size:1.3rem; margin-bottom:1%;" id="@item.ApplicationId"><i class="fas fa-info-circle"></i></a>
+                          @if (Request.IsAuthenticated && User.IsInRole("Manager") || Request.IsAuthenticated && User.IsInRole("Admin"))
+                          {
+                              @Html.ActionLink("Manage", "Edit", new { id = item.ApplicationId }, new { @class = "far fa-edit" })
+
+                          }
+                          @if (Request.IsAuthenticated && User.IsInRole("Employee"))
+                          {
+                              @Html.ActionLink("Update", "Edit", new { id = item.ApplicationId }, new { @class = "far fa-edit" })
+                          }
+                          @*@Html.ActionLink("Details", "Details", new { id = item.ApplicationId }) |*@
+                          @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationId }, new { @class = "far fa-trash-alt" })
+                      </td>
+                  </tr>
+              }
+
+
+
+
+          </table>
+
+
+          <br /><br />
+      </div>
+<div id="ApplicationDetails"> </div>
+
+@section scripts {
+    
+    <script src="https://cdn.jsdelivr.net/jquery.ajax.unobtrusive/3.2.4/jquery.unobtrusive-ajax.min.js"></script>
+ 
+
+
+
+
+    <script>
+
+        $('a.DetailsLink').click(function (e) {
+            e.preventDefault();
+            $('#ApplicationDetails').data('appId', $(this).attr('id'))
+                .dialog({
+                    width: 800,
+                    height: 550,
+                    open: function () {
+                        var appId = $(this).data('appId');
+                        $(this).load("/Applications/AjaxDetails/" + appId);
+                    },
+                    title: "Application Details",
+                    modal: true,
+                    resizeable: false
+                });
+        });
+
+
+    </script>
+
+}

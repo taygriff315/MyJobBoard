@@ -27,16 +27,16 @@ namespace MyJobBoard.UI.MVC
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/Content/vendor").Include(
-               "~/Content/assets/vendor/aos/aos.js", 
-               "~/Content/assets/vendor/bootstrap/js/bootstrap.bundle.min.js", 
-               "~/Content/assets/vendor/glightbox/js/glightbox.min.js", 
-               "~/Content/assets/vendor/isotope-layout/isotope.pkgd.min.js", 
-               "~/Content/assets/vendor/php-email-form/validate.js",
-               "~/Content/assets/vendor/purecounter/purecounter.js",
-               "~/Content/assets/vendor/swiper/swiper-bundle.min.js",
-               "~/Content/assets/vendor/typed.js/typed.min.js", 
-               "~/Content/assets/vendor/waypoints/noframework.waypoints.js",
-               "~/Content/assets/js/main.js"
+               "~/Content/vendor/aos/aos.js", 
+               "~/Content/assests/vendor/bootstrap/js/bootstrap.bundle.min.js", 
+               "~/Content/vendor/glightbox/js/glightbox.min.js", 
+               "~/Content/vendor/isotope-layout/isotope.pkgd.min.js", 
+               "~/Content/vendor/php-email-form/validate.js",
+               "~/Content/vendor/purecounter/purecounter.js",
+               "~/Content/vendor/swiper/swiper-bundle.min.js",
+               "~/Content/vendor/typed.js/typed.min.js", 
+               "~/Content/vendor/waypoints/noframework.waypoints.js",
+               "~/Content/js/main.js"
                 ));
 
             bundles.Add(new StyleBundle("~/Content/archive").Include(

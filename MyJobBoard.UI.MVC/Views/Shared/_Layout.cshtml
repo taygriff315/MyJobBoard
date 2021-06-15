@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>iPortfolio Bootstrap Template - Index</title>
+    <title>NASA: Authorization permitted</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -17,10 +17,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet" />
     @Styles.Render("~/Content/archive")
-
+    <link href="~/Content/css/custom.css" rel="stylesheet" />
     <!-- =======================================================
     * Template Name: iPortfolio - v3.3.0
     * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
@@ -36,41 +36,91 @@
 
     <!-- ======= Header ======= -->
     <header id="header">
-        <div class="d-flex flex-column">
+        <li class="d-flex flex-column">
 
             <div class="profile">
-                <img src="~/Content/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
-                <h1 class="text-light"><a href="index.html">Alex Smith</a></h1>
+                <img src="~/Content/img/nasa-emblem.jpg" alt="" class="img-fluid rounded-circle">
+
                 <div class="social-links mt-3 text-center">
-                    <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                    <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                    <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                    <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                    <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                    <a href="https://twitter.com/NASA?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" class="twitter"><i class="bx bxl-twitter"></i></a>
+                    <a href="https://www.facebook.com/nasaearth/" class="facebook"><i class="bx bxl-facebook"></i></a>
+                    <a href="https://www.instagram.com/nasa/" class="instagram"><i class="bx bxl-instagram"></i></a>
+
                 </div>
             </div>
 
             <nav id="navbar" class="nav-menu navbar">
+
+
+
                 <ul>
                     @Html.Partial("_LoginPartial")
-                    <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-                    <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Profile</span></a></li>
-                    <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Application</span></a></li>
-                    <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Positions</span></a></li>
-                    <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Locations</span></a></li>
-                    <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+
+                    @if (Request.IsAuthenticated && User.IsInRole("Employee"))
+                    {
+
+                        <li><a href="@Url.Action("UserProfile","UserDetails")"><i class="fas fa-user-astronaut"></i>Profile</a></li>
+                        <li>
+                            <a href="@Url.Action("Index", "OpenPositions")"><i class="fas fa-search-dollar"></i> Available Positions</a>
+                        </li>
+
+
+                    }
+
+                    @if (Request.IsAuthenticated && User.IsInRole("Manager"))
+                    {
+                        <li><a href="@Url.Action("UserProfile", "UserDetails")"><i class="fas fa-user-astronaut"></i>Profile</a></li>
+                        <li><a href="@Url.Action("Index", "OpenPositions")"><i class="fas fa-search-dollar"></i>Positions needed</a></li>
+                        <li>
+                            <a href="@Url.Action("Index","Applications")"><i class="far fa-folder"></i>Applications</a>
+                        </li>
+                    }
+
+
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <li>
+                            <div class="drop-down">
+                                Manage  <i class="fas fa-caret-right"></i>
+                            </div>
+
+                            <div class="dropdown-container">
+                                @Html.ActionLink("Add Job Listings", "Index", "OpenPositions")
+                                @Html.ActionLink("View Applications", "Index", "Applications")
+                                @Html.ActionLink("Manage Locations", "Index", "Locations")
+                                @Html.ActionLink("Add/ Edit Positions", "Index", "Positions")
+
+                            </div>
+                        </li>
+
+                        <li>
+
+                            <div class="drop-down">
+                                Admin  <i class="fas fa-caret-right"></i>
+                            </div>
+
+                            <div class="dropdown-container">
+                                @Html.ActionLink("Roles", "Index", "RolesAdmin")
+                                @Html.ActionLink("Users", "Index", "UsersAdmin")
+                            </div>
+                        </li>
+
+
+                    }
+                    @if (Request.IsAuthenticated && User.IsInRole("Manager") || Request.IsAuthenticated && User.IsInRole("Employee"))
+                    {
+
+                        <li><a href="@Url.Action("Contact","Home")"><i class="bx bx-envelope"></i> Contact</a></li>
+                    }
+
+
 
                 </ul>
             </nav><!-- .nav-menu -->
-        </div>
+
     </header><!-- End Header -->
     <!-- ======= Hero Section ======= -->
-    <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
-        <div class="hero-container" data-aos="fade-in">
-            <h1>Alex Smith</h1>
-            <p>I'm <span class="typed" data-typed-items="Designer, Developer, Freelancer, Photographer"></span></p>
-        </div>
-    </section><!-- End Hero -->
+
 
     <main id="main">
 
@@ -96,10 +146,30 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-   
 
+    <script>
+        var dropdown = document.getElementsByClassName("drop-down");
+        var i;
+
+        for (var i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
+    </script>
+
+    <script src="~/Content/js/custom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/5340a0b345.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     @Scripts.Render("~/Content/vendor")
-
     @RenderSection("scripts", required: false)
 </body>
 

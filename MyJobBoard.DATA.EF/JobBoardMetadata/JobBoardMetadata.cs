@@ -29,12 +29,21 @@ namespace MyJobBoard.DATA.EF/*.JobBoardMetadata*/
         [Display(Name ="Resume' File Name ")]
         public string ResumeFileName { get; set; }
 
+        [StringLength(75, ErrorMessage ="File name cannon contain more than 75 characters")]
+        [Display(Name ="Profile Picture")]
+        public string ProfilePicture { get; set; }
+
     }
 
 
     [MetadataType(typeof(UserDetailMetadata))]
     public partial class UserDetail
     {
+        [Display(Name="Name")]
+        public string Name
+        {
+            get { return FirstName + " " + LastName; }
+        }
 
     }
 
@@ -42,6 +51,7 @@ namespace MyJobBoard.DATA.EF/*.JobBoardMetadata*/
     {
         [Required(ErrorMessage ="The date of the application is required")]
         [Display(Name ="Application Date")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime ApplicationDate { get; set; }
 
         [StringLength(2000, ErrorMessage ="The note cannot contain more than 2000 characters")]
@@ -111,9 +121,12 @@ namespace MyJobBoard.DATA.EF/*.JobBoardMetadata*/
 
     }
 
+
     [MetadataType(typeof(OpenPositionMetadata))]
     public partial class OpenPosition
     {
+        
+        public bool HasApplied { get; set; }
 
     }
 
@@ -142,7 +155,11 @@ namespace MyJobBoard.DATA.EF/*.JobBoardMetadata*/
     [MetadataType(typeof(LocationMetadata))]
     public partial class Location
     {
-
+        [Display(Name = "Location")]
+        public string Address
+        {
+            get { return City + ", " + State; }
+        }
     }
 
 

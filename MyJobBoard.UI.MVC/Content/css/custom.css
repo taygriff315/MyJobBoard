@@ -1,0 +1,208 @@
+﻿body {
+    background-color: rgba(26,93,172, .7);
+}
+
+.logIn-container {
+    display: flex;
+    justify-content: center;
+    border: 8px solid rgb(238,41,61);
+    border-radius: 1%;
+    margin: auto;
+    background-color: white;
+    width: 55%;
+    box-shadow: 0px 0px 10px 12px rgba(59,63,68, .4);
+}
+
+form {
+   
+}
+            
+#profile-container li a {
+    color: red;
+    font-weight: 900;
+}
+
+td a.far.fa-edit {
+    color: rgb(111,116,48);
+    display: block;
+}
+td a.far.fa-trash-alt {
+    display: block;
+    color: red;
+    margin-top: 10%;
+}
+
+.app-folder {
+    margin-left: 1.5%;
+}
+
+.login-button {
+    margin-top: 2%;
+    box-shadow: 0px 0px 10px 2px rgba(59,63,68, .7);
+}
+
+td img {
+    box-shadow: 0px 0px 10px 10px rgba(59,63,68, .4);
+}
+
+.app-container {
+    background-color: white;
+    border: 4px solid rgb(238,41,61);
+    margin: 3%;
+    box-shadow: 0px 0px 10px 10px rgba(59,63,68, .4);
+}
+
+.fas.fa-star {
+    color: gold;
+}
+
+.table {
+    background-color: white;
+}
+#profile-container {
+    border: 4px solid rgb(238,41,61);
+    margin: 3%;
+    box-shadow: 0px 0px 10px 10px rgba(59,63,68, .4);
+}
+
+.ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix ui-draggable-handle {
+    background-color: rgb(26,93,172);
+}
+
+#DataTables_Table_0_wrapper input {
+    background-color: white;
+   
+}
+
+select {
+    background-color: white!important;
+   
+}
+
+.Sent {
+    color: blue;
+}
+
+.Pending {
+    color: gold;
+}
+
+.Denied {
+    color: red;
+}
+
+.Hired {
+    color: forestgreen;
+}
+
+.open-container {
+    border: 4px solid rgb(238,41,61);
+    margin: 3%;
+    box-shadow: 0px 0px 10px 10px rgba(59,63,68, .4);
+    padding: 1rem;
+    background-color: white;
+}
+
+.openDetails-container {
+    border: 4px solid rgb(238,41,61);
+    margin: 6%;
+    box-shadow: 0px 0px 10px 10px rgba(59,63,68, .4);
+    background-color: white;
+    padding: 1rem;
+}
+
+.button {
+    padding: 15px 25px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #04AA6D;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+   
+    
+}
+
+    .button:hover {
+        background-color: #3e8e41
+    }
+
+    .button:active {
+        background-color: #3e8e41;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
+
+    .rocket {
+        position: relative;
+        animation-direction: normal;
+        
+        margin-right: 7rem;
+      
+    }
+
+    .stroke {
+        color: white!important;
+        font-size: 7rem!important;
+        -webkit-text-stroke: 2px red;
+    }
+
+    textarea#ManagerNotes {
+        width:60rem; 
+    }
+
+.ui-widget-header {
+    background-color: rgb(26,93,172);
+    color: white;
+}
+
+.rocketbg {
+    background-image: url('../img/background3.jpg');
+    background-color: none;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.countdownText {
+    -webkit-text-stroke: 2px black;
+}
+
+.drop-down {
+    padding: 12px 15px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #a8a9b4;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    transition: 0.3s;
+}
+.dropdown-container {
+    display: none;
+    background-color: #040b14;
+    padding-left: 8px;
+}
+
+.drop-down:hover {
+    transition: 0.3s;
+    color:white;
+}
+
+.active {
+    background-color: #040b14;
+    color: white;
+}
+
+input.btn.btn-default {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: green;
+    color: white;
+}

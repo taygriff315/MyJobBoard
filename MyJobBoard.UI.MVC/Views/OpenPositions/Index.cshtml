@@ -1,0 +1,89 @@
+﻿@model IEnumerable<MyJobBoard.DATA.EF.OpenPosition>
+
+@{
+    if (Request.IsAuthenticated && User.IsInRole("Admin") || Request.IsAuthenticated && User.IsInRole("Manager"))
+    {
+
+        ViewBag.Title = "Positions Needed";
+    }
+    if (Request.IsAuthenticated && User.IsInRole("Employee"))
+    {
+        ViewBag.Title = "Available Positions";
+    }
+}
+
+<br /><br />
+<br /><br />
+
+
+<div class="open-container" style="background-color: white;">
+    <h2 class="text-center" style="color: red;">@ViewBag.Title</h2>
+    @if (Request.IsAuthenticated && User.IsInRole("Manager") || Request.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <p style="font-weight: 900;">
+            @Html.ActionLink("Create Listing", "Create")
+        </p>
+    }
+
+    <table class="table myTable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pay)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Location.StoreNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Position.Title)
+                </th>
+                <th>@Html.DisplayNameFor(model => model.Location.Address)</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location.StoreNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Position.Title)
+                       
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location.Address)
+                    </td>
+
+                    <td>
+                       
+                        @if (Request.IsAuthenticated && User.IsInRole("Employee"))
+                        {
+                            @Html.ActionLink("View Listing", "Details", new { id = item.OpenPositionId })
+                        }
+                        @if (Request.IsAuthenticated && User.IsInRole("Manager") || Request.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            
+                            @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionId }, new { @class= "far fa-edit" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionId }, new { @class = "far fa-trash-alt" })
+                        }
+                    
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('.myTable').DataTable();
+        });
+    </script>
+}

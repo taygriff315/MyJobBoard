@@ -1,0 +1,44 @@
+﻿@model MyJobBoard.DATA.EF.UserDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+<br /><br />
+<br /><br />
+
+<h2>Details</h2>
+
+<div>
+    <h4>UserDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResumeFileName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResumeFileName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |
+    @Html.ActionLink("Back to Profile", "UserProfile", "UserDetails")
+</p>

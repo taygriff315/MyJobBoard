@@ -1,52 +1,148 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+     <h1 style="font-family:Georgia, 'Times New Roman', Times, serif;"class="stroke">NASA</h1>
+    
+        <div class="hero-container" data-aos="fade-in">
 
-
-
-<section id="facts" class="facts">
-    <div class="container">
-
-        <div class="section-title">
-            <h2>Facts</h2>
-            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            <div> <p>Together we can <span class="typed" data-typed-items="explore, expand, progress, achieve."></span></p></div>
         </div>
+    
+</section>
+<div style="background-color: black;">
 
-        <div class="row no-gutters">
+    <br /><br />
+    <i style="margin-left: 80%;" class="fas fa-star"></i>
+    <br /><br />
+    <i style="margin-left: 55%;" : class="fas fa-star"></i>
+    <br /><br />
+    <br /><br />
+    <i style="margin-left:10%;" class="fas fa-star"></i>
+    <i style="margin-left:15%;" class="fas fa-star"></i>
 
-            <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up">
-                <div class="count-box">
-                    <i class="bi bi-emoji-smile"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-                    <p><strong>Happy Clients</strong> consequuntur quae</p>
+    <i style="margin-left:5%;" class="fas fa-star"></i>
+    <br /><br />
+    <i style="margin-left:20%;" class="fas fa-star"></i>
+    <i style="margin-left: 30%;" class="fas fa-star float-end"></i>
+    <br /><br />
+    <i style="margin-left:70%;" class="fas fa-star"></i>
+    <br /><br />
+    <i style="margin-left: 90%;" class="fas fa-star"></i>
+    <br /><br />
+    <i style="margin-left:15%;" class="fas fa-star"></i>
+    <i style="margin-left:60%;" class="fas fa-star"></i>
+    <br /><br />
+    <i style="margin-left: 80%;" class="fas fa-star"></i>
+    <br /><br />
+    <br /><br />
+    <i style="margin-left: 45%;" class="fas fa-star float-end"></i>
+    <br /><br />
+    <i style="margin-left: 50%;" : class="fas fa-star"></i>
+    <br /><br />
+    <i style="margin-left:20%;" class="fas fa-star"></i>
+    <br /><br />
+    <i style="margin-left:15%;" class="fas fa-star"></i>
+    <i style="margin-left: 90%;" class="fas fa-star"></i>
+    <br /><br />
+
+
+</div>
+
+
+<div style="background-color: none;" class="rocketbg">
+ <br /><br />
+ <br /><br />
+   
+    <div>
+
+
+        <div style="display: inline-block; margin-left: 8%;background-color: grey; border: 4px solid black; border-radius:2%; margin-bottom: 0px; padding:50px; margin-top:10%; box-shadow: 0px 0px 10px 10px rgba(59,63,68, .5);">
+            <hr />
+            <h3 >| <span style="font-weight: 900;">Control Panel</span> |</h3>
+            <hr />
+            <button id="button" class="button">Launch</button>
+            <div style="display: inline-block; margin-left: 3%;">
+                <div>
+                    <i class="fas fa-toggle-on"></i>
+                    <i class="fas fa-toggle-off"></i>
+                </div>
+                <div>
+                    <i class="fas fa-toggle-off"></i>
+                    <i class="fas fa-toggle-on"></i>
                 </div>
             </div>
-
-            <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="100">
-                <div class="count-box">
-                    <i class="bi bi-journal-richtext"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-                    <p><strong>Projects</strong> adipisci atque cum quia aut</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="200">
-                <div class="count-box">
-                    <i class="bi bi-headset"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
-                    <p><strong>Hours Of Support</strong> aut commodi quaerat</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="300">
-                <div class="count-box">
-                    <i class="bi bi-people"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>
-                    <p><strong>Hard Workers</strong> rerum asperiores dolor</p>
-                </div>
-            </div>
+        </div>
+        <div style="display: inline-block; margin-left: 8%;">
+            <h1 class="text-center countdownText" style="color:red; font-weight: bold; font-size: 50px;" id="countdown"></h1>
 
         </div>
+    <div id="rocket" style="background-color:none; margin-bottom: 20%;" class="rocket animate scroll">
+        <img class="float-end" src="~/Content/img/rocketedit.png" />
 
     </div>
-</section>
+    </div>
+    <br /><br />
+    <br /><br />
+
+
+</div>
+@section scripts {
+    
+ <script>
+     $(document).ready(function (e) {
+         var width = $(document).width();
+
+         
+
+         function launch() {
+             
+             $("#rocket").animate({
+                 bottom: 3500
+             }, 6000, function () {
+
+             });
+         }
+
+         function countdown() {
+             var timeleft = 3;
+             var countdownTimer = setInterval(function () {
+                 if (timeleft <= 0) {
+                     clearInterval(countdownTimer);
+                     document.getElementById("countdown").innerHTML = "BLAST OFF!!";
+                 }
+                 else {
+                     document.getElementById("countdown").innerHTML = timeleft;
+                 }
+                 timeleft -= 1;
+
+             }, 1000);
+         }
+         $("#button").click(() => {
+
+      
+             countdown();
+             setInterval(function () { launch() }, 4000);
+
+             
+         });
+     });
+
+
+
+     $("#button").click(function () {
+         $("html, body").animate({ scrollTop: 0 }, 5900);
+         return false;
+     });
+
+
+     $(document).ready(function () {
+        @if (ViewBag.testValue == "scroll")
+        {
+            <text>$('html,body').animate({
+                scrollTop: ($(".scroll").offset().top) - 100
+                }, 'slow');</text>
+        }
+        });
+    </script>
+    }

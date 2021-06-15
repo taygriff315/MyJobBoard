@@ -20,7 +20,7 @@ namespace MyJobBoard.DATA.EF
         public System.DateTime ApplicationDate { get; set; }
         public string ManagerNotes { get; set; }
         public int ApplicationStatus { get; set; }
-        public string ResumeFilename { get; set; }
+        public string ResumeFileName { get; set; }
     
         public virtual ApplicationStatu ApplicationStatu { get; set; }
         public virtual OpenPosition OpenPosition { get; set; }

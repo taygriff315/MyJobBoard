@@ -1,0 +1,69 @@
+﻿@model MyJobBoard.DATA.EF.Application
+@{ 
+    ViewBag.Title = Model.OpenPosition.Position.Title;
+}
+
+<div>
+    <h4>@ViewBag.Title</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserDetail.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserDetail.Name)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationStatu.StatusName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationStatu.StatusName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationDate)
+        </dd>
+
+        @if (Request.IsAuthenticated && User.IsInRole("Admin") || Request.IsAuthenticated && User.IsInRole("Manager"))
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.ManagerNotes)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ManagerNotes)
+            </dd>
+        }
+        <dt>
+            @Html.DisplayNameFor(model => model.OpenPosition.Position.JobDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OpenPosition.Position.JobDescription)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResumeFileName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResumeFileName)
+        </dd>
+
+
+
+    </dl>
+
+    
+
+
+</div>
