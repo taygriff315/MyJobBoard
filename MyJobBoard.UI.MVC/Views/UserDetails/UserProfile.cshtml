@@ -6,75 +6,88 @@
 <br /><br />
 <br /><br />
 
-      <div id="profile-container" style="background-color: white; font-weight: 900;">
-          <h2 class="text-center" style="color:rgb(26,93,172);"><i class="fas fa-star"></i>  @ViewBag.Title  <i class="fas fa-star"></i></h2>
-        
-
-          <table class="table">
-              <tr>
-                  <th>
-
-                  </th>
-                  <th>
-                      @Html.DisplayNameFor(model => model.FirstName)
-                  </th>
-                  <th>
-                      @Html.DisplayNameFor(model => model.LastName)
-                  </th>
-                  <th>
-                      @Html.DisplayNameFor(model => model.ResumeFileName)
-                  </th>
-                  <th></th>
-              </tr>
-
-              @foreach (var item in Model)
-              {
-                  <tr>
-                      <td>
-                          <img src="~/Content/profilePictures/@item.ProfilePicture" style="height: 10rem; width: 10rem;" />
-                      </td>
-                      <td>
-                          @Html.DisplayFor(modelItem => item.FirstName)
-                      </td>
-                      <td>
-                          @Html.DisplayFor(modelItem => item.LastName)
-                      </td>
-                      <td>
-                          <a href="~/Content/resumes/@item.ResumeFileName">@Html.DisplayFor(modelItem => item.ResumeFileName)</a>
-                      </td>
-                      <td>
+<div class="table-responsive">
+    <div id="profile-container" style="background-color: white; font-weight: 900;">
+        <h2 class="text-center" style="color:rgb(26,93,172);"><i class="fas fa-star"></i>  @ViewBag.Title  <i class="fas fa-star"></i></h2>
 
 
+        <table class="table myTable">
+            <thead>
+                <tr>
+                    <th>
 
-                          @Html.ActionLink(" Edit Profile", "Edit", new { id = item.UserId }, new { @class = "far fa-edit" })
-                          @Html.ActionLink(" Delete Profile", "Delete", new { id = item.UserId }, new { @class = "far fa-trash-alt" })
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ResumeFileName)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="~/Content/profilePictures/@item.ProfilePicture" style="max-width: 100px;" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+
+                        <td>
+                            <a href="~/Content/resumes/@item.ResumeFileName">View Resume'</a>
+                        </td>
+                        <td>
 
 
-                      </td>
-                  </tr>
-              }
-              <div class="app-folder">
-                  @Html.Partial("_LoginPartial")
-              </div>
+
+                            @Html.ActionLink(" Edit Profile", "Edit", new { id = item.UserId }, new { @class = "far fa-edit" })
+                            @Html.ActionLink(" Delete Profile", "Delete", new { id = item.UserId }, new { @class = "far fa-trash-alt" })
 
 
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <div class="app-folder">
+                @Html.Partial("_LoginPartial")
+            </div>
 
 
 
 
-          </table>
-          @if (Request.IsAuthenticated && User.IsInRole("Employee"))
-          {
 
-              <a class="app-folder" href="@Url.Action("Index","Applications")"><i class="far fa-folder"></i> My Applications</a>
 
-          }
-          @if (Request.IsAuthenticated && User.IsInRole("Manager") || (Request.IsAuthenticated && User.IsInRole("Admin")))
-          {
-              
-              <a class="app-folder" href="@Url.Action("Index","Applications")"><i class="far fa-folder"></i> Manage Applications</a>
+        </table>
+        @if (Request.IsAuthenticated && User.IsInRole("Employee"))
+        {
 
-          }
-          <br /><br />
+            <a class="app-folder" href="@Url.Action("Index","Applications")"><i class="far fa-folder"></i> My Applications</a>
 
-      </div>
+        }
+        @if (Request.IsAuthenticated && User.IsInRole("Manager") || (Request.IsAuthenticated && User.IsInRole("Admin")))
+        {
+
+            <a class="app-folder" href="@Url.Action("Index","Applications")"><i class="far fa-folder"></i> Manage Applications</a>
+
+        }
+        <br /><br />
+
+
+    </div>
+</div>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('.myTable').DataTable({
+                responsive: true, "searching": false, "ordering": false, "entries": false, "bPaginate": false,
+                "bLengthChange": false, "bInfo": false,
+                "bAutoWidth": false
+            });
+        });
+    </script>
+}

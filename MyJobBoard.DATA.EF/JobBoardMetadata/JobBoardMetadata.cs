@@ -26,7 +26,7 @@ namespace MyJobBoard.DATA.EF/*.JobBoardMetadata*/
         public string LastName { get; set; }
 
         [StringLength(75,ErrorMessage ="File name cannot contain more than 75 characters")]
-        [Display(Name ="Resume' File Name ")]
+        [Display(Name ="Resume'")]
         public string ResumeFileName { get; set; }
 
         [StringLength(75, ErrorMessage ="File name cannon contain more than 75 characters")]

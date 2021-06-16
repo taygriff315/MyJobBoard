@@ -6,39 +6,41 @@
 <br /><br />
 <br /><br />
 
-      <div class="open-container">
-          <h2>Index</h2>
+      <div class="table-responsive">
+          <div class="open-container">
+              <h2>Index</h2>
 
-          <p>
-              @Html.ActionLink("Create New", "Create")
-          </p>
-          <table class="table">
-              <tr>
-                  <th>
-                      @Html.DisplayNameFor(model => model.StatusName)
-                  </th>
-                  <th>
-                      @Html.DisplayNameFor(model => model.StatusDescription)
-                  </th>
-                  <th></th>
-              </tr>
-
-              @foreach (var item in Model)
-              {
+              <p>
+                  @Html.ActionLink("Create New", "Create")
+              </p>
+              <table class="table">
                   <tr>
-                      <td>
-                          @Html.DisplayFor(modelItem => item.StatusName)
-                      </td>
-                      <td>
-                          @Html.DisplayFor(modelItem => item.StatusDescription)
-                      </td>
-                      <td>
-                          @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationStatusId }) |
-                          @Html.ActionLink("Details", "Details", new { id = item.ApplicationStatusId }) |
-                          @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationStatusId })
-                      </td>
+                      <th>
+                          @Html.DisplayNameFor(model => model.StatusName)
+                      </th>
+                      <th>
+                          @Html.DisplayNameFor(model => model.StatusDescription)
+                      </th>
+                      <th></th>
                   </tr>
-              }
 
-          </table>
+                  @foreach (var item in Model)
+                  {
+                      <tr>
+                          <td>
+                              @Html.DisplayFor(modelItem => item.StatusName)
+                          </td>
+                          <td>
+                              @Html.DisplayFor(modelItem => item.StatusDescription)
+                          </td>
+                          <td>
+                              @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationStatusId }) |
+                              @Html.ActionLink("Details", "Details", new { id = item.ApplicationStatusId }) |
+                              @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationStatusId })
+                          </td>
+                      </tr>
+                  }
+
+              </table>
+          </div>
       </div>
